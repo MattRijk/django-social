@@ -6,7 +6,7 @@ class Join(models.Model):
 
     # auto_now_add -> when it was added to the database ==> set the time.
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-    
+
     # auto_now -> When the model was updated ==> set the time.
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
