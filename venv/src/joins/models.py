@@ -10,6 +10,10 @@ class Join(models.Model):
     # auto_now -> When the model was updated ==> set the time.
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-    def __unicode__(self):
-        return self.email
 
+    # name = models.CharField(max_length=100, primary_key=True)
+    def __unicode__(self):
+        return "%s" %(self.email)
+
+    # def name(self):
+    #     return self.name
