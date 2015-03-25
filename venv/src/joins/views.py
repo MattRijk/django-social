@@ -49,8 +49,14 @@ def home(request):
         new_join_old, created = Join.objects.get_or_create(email=email)
         if created:
             new_join_old.ref_id = get_ref_id()
+            # add our friend who referred us to our join model or a related one
+            if  not obj == None:
+                new_join_old.friend = obj
             new_join_old.ip_address = get_ip(request)
             new_join_old.save()
+        # print all friends that join as a result of owner email of main sharer email
+        print Join.objects.filter(friend=obj).count()
+        print obj.referral.all().count()
         return HttpResponseRedirect("/%s" %(new_join_old.ref_id))
     context = {"form": form}
     template = "home.html"
