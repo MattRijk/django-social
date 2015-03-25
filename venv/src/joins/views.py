@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 
 from .forms import EmailForm, JoinForm
 
@@ -19,34 +19,22 @@ def get_ip(request):
 import uuid
 
 def get_ref_id():
-    #ref_id = str(uuid.uuid4())[:11].replace('-','').lower()
-    ref_id = u'a6da2f0888'
+    ref_id = str(uuid.uuid4())[:11].replace('-','').lower()
+    #ref_id = u'a6da2f0888'
     try:
        id_exists = Join.objects.get(ref_id=ref_id)
-       print "run getting the id"
        get_ref_id()
     except:
        return ref_id
 
+def share(request, ref_id):
+    print ref_id
+    context = {}
+    template = "home.html"
+    return render(request, template, context)
+
+
 def home(request):
-
-    # print request.POST["email"],request.POST["email_2"]
-
-    # """
-    # This using regular django forms
-    # """
-    # form = EmailForm(request.POST or None)
-    # if form.is_valid():
-    #     email = form.cleaned_data['email']
-    #     new_join, created = Join.objects.get_or_create(email=email)
-    #     print new_join, created
-    #     print new_join.timestamp
-    #     if created:
-    #         print "This obj was created"
-
-  # '''
-  # This using regular django forms
-  # '''
     form = JoinForm(request.POST or None)
     if form.is_valid():
         new_join = form.save(commit=False)
@@ -57,10 +45,7 @@ def home(request):
             new_join_old.ref_id = get_ref_id()
             new_join_old.ip_address = get_ip(request)
             new_join_old.save()
-        # redirect here
-        # new_join.ip_address = get_ip(request)
-        # new_join.save()
+        return HttpResponseRedirect("/%s" %(new_join_old.ref_id))
     context = {"form": form}
     template = "home.html"
     return render(request, template, context)
-
