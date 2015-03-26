@@ -1,11 +1,39 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
+{% include "navbar.html" %}
 
+
+    <div class="jumbotron" >
+      <div class="container">
+      <div class="row">
+      <div class="col-md-6 pull-right" style="text-align:center;">
+
+        <h1><i class="fa fa-paper-plane-o" style="padding:10px;"></i><br />Invite Friends &amp; Earn Rewards</h1>
+        <p>Share your unique link below via Email, Facebook, Twitter, Reddit, of LinkedIn to earn
+            rewards from natickweb.com.</p>
+       <div class="well" style="background-color:white;">{{ ref_url }}</div>
+       <br /><br />
+       <i class="fa fa-facebook-official fa-4x" style="color:rgb(48, 84, 165);"></i>
+       <i class="fa fa-twitter-square fa-4x" style="color:#3288C0;"></i>
+       <i class="fa fa-linkedin-square fa-4x" style="color:#1F5187;"></i>
+       <i class="fa fa-reddit-square fa-4x" style="color:rgb(150, 33, 47);"></i>
+       <i class="fa fa-google-plus-square fa-4x" style="color:rgb(195, 50, 16);"></i>
+
+
+      </div>
+      <div class="col-md-6 pull-left">
+        <img src="{% static 'img/launch.jpg' %}" class='img-responsive img-rounded'/>
+      </div>
+      </div>
+      </div>
+    </div>
+<div class="container">
 {{ ref_id }}<br />
 
 {{ count }}<br />
 
-{{ ref_url }}<br />
-
+<br />
+</div>
 {% endblock %}
