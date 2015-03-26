@@ -79,7 +79,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+#SHARE_URL = "http://launchwithcode.com/?ref="
+SHARE_URL = "http://127.0.0.1:8000//?ref="
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
@@ -88,5 +89,19 @@ TEMPLATE_DIRS = (
     #BASE_DIR + "/templates/"
     #'C:\Users\matt\PycharmProjects\django101\venv\src\templates',
 )
+# Static files (CSS, Javascript, Images)
+# http://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# STATIC_ROOT = 'C:\Users\matt\PycharmProjects\django101\venv\src\static_root'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static','static_root')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static','static_dirs'),
+    # 'C:\Users\matt\PycharmProjects\django101\venv\src\static_dirs',
+)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static','media')
+
+MEDIA_URL = '/media/'

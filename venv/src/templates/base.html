@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -11,9 +12,12 @@
 
     <title>Hello, World!</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    -->
 
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+      
     <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
 
@@ -30,9 +34,6 @@
           background-color: #E5EEF9;
        }
 
-
-
-        }
     </style>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
