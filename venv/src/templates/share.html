@@ -2,12 +2,73 @@
 {% load staticfiles %}
 
 {% block jquery %}
-    $signUpCount = 3;
+
+    $signUpCount = {{ count }};
+
     //$(".progress-bar").css("width","80%").attribute("aria-valuenow", "80").text("80%");
-    if($signUpCount > 0 && $signUpCount <= 5){
+
+    function completeBlock(progressBarId) {
+        $(progressBarId).css("width","100%").attr("aria-valuenow", "100").text("Completed");
+    };
+
+    function percentBlock(progressBarId, percentNum, newText) {
+         $(progressBarId).css("width", percentNum + "%").attr("aria-valuenow", percentNum).text(newText);
+
+    };
+
+    function barMessage(countNum) {
+
+        if($newPercent <= 45){
+            percentBlock(countNum, $newPercent, $newPercent + "%");
+        } else {
+            percentBlock(countNum, $newPercent, "Joined " + $signUpCount);
+        }
+    }
+
+    if ($signUpCount == 0) {
+
+
+    } else if ($signUpCount > 0 && $signUpCount < 5) {
+
+
         $newPercent = $signUpCount/5 * 100;
-        $("#count5").css("width",$newPercent + "%").attr("aria-valuenow", $newPercent).
-        text($newPercent + "%");
+
+        barMessage("#count5")
+
+    } else if ($signUpCount > 5 && $signUpCount < 15) {
+
+        completeBlock("#count5");
+
+        $newCount = $signUpCount - 5;
+        $newPercent = $newCount/(15-5) * 100;
+
+        barMessage("#count15")
+
+    } else if ($signUpCount >= 15 && $signUpCount < 25) {
+         completeBlock("#count5");
+
+         completeBlock("#count15");
+
+
+         $newCount = $signUpCount - 15;
+         $newPercent = $newCount/(25-15) * 100;
+
+         barMessage("#count25")
+
+     } else if ($signUpCount >= 25 && $signUpCount < 50) {
+        completeBlock("#count5");
+
+        completeBlock("#count15");
+
+        completeBlock("#count25");
+
+        $newCount = $signUpCount - 25;
+        $newPercent = $newCount/(50-25) * 100;
+
+        barMessage("#count50")
+
+    } else {
+
     }
 
 {% endblock %}
@@ -26,12 +87,29 @@
             rewards from natickweb.com.</p>
        <div class="well" style="background-color:white;">{{ ref_url }}</div>
        <br /><br />
-       <i class="fa fa-facebook-official fa-4x" style="color:rgb(48, 84, 165);"></i>
-       <i class="fa fa-twitter-square fa-4x" style="color:#3288C0;"></i>
-       <i class="fa fa-linkedin-square fa-4x" style="color:#1F5187;"></i>
-       <i class="fa fa-reddit-square fa-4x" style="color:rgb(150, 33, 47);"></i>
-       <i class="fa fa-google-plus-square fa-4x" style="color:#D34836;"></i>
 
+       <a href="https://www.facebook.com/sharer/sharer.php?u={{ ref_url }}" target="_blank">
+       <i class="fa fa-facebook-official fa-4x" style="color:rgb(48, 84, 165);"></i>
+       </a>
+
+       <a href="https://twitter.com/home?status=hello%20this%20is%20a%20twitter%20link.%20Hi%20this%20is%20a%20%23tag">
+       <i class="fa fa-twitter-square fa-4x" style="color:#3288C0;"></i>
+       </a>
+
+       <a href="https://www.linkedin.com/shareArticle?mini=False&url={{ ref_url }}
+       &title=hello%20this%20is%20a%20linkedin%20link.%20Hi%20this%20is%20a%20%23tag&
+       summary=hello%20this%20is%20a%20linkedin%20link.%20Hi%20this%20is%20a%20%23tag
+       &source={{ ref_url }}" target = "_blank">
+       <i class="fa fa-linkedin-square fa-4x" style="color:#1F5187;"></i>
+       </a>
+
+       <a href="http://www.reddit.com/submit?url={{ ref_url }}&title=hello%20reddit%20%23tag." target="_blank">
+       <i class="fa fa-reddit-square fa-4x" style="color:rgb(150, 33, 47);"></i>
+       </a>
+
+       <a href='https://plus.google.com/share?url=http://codingforentrepreneurs.com'>
+       <i class="fa fa-google-plus-square fa-4x" style="color:#D34836;"></i>
+       </a>
 
       </div>
       <div class="col-md-6 pull-left">
@@ -43,7 +121,7 @@
 
 
 <div class="container" style="text-align:center;">
-Joined number is: {{ count }}<br />
+Joined number is: {{count}} <br />
 <br />
 
  <!--progress bar 1-->
@@ -52,7 +130,7 @@ Joined number is: {{ count }}<br />
         <h3>5 joined</h3>
         <div class="progress">
               <div class="progress-bar" role="progressbar" id="count5" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;">
-                 80%
+                 0%
               </div>
         </div>
         <hr/>
@@ -72,9 +150,9 @@ Joined number is: {{ count }}<br />
     <div class="col-sm-3">
         <h3>15 joined</h3>
         <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"
+              <div class="progress-bar" id="count15" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"
                    style="width: 0%;">
-                80%
+                0%
               </div>
         </div>
         <hr/>
@@ -90,10 +168,10 @@ Joined number is: {{ count }}<br />
     </div>
 <!--progress bar 3-->
     <div class="col-sm-3">
-        <h3>20 joined</h3>
+        <h3>25 joined</h3>
         <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;">
-                 80%
+              <div class="progress-bar" id="count25" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;">
+                 0%
               </div>
         </div>
          <hr/>
@@ -112,8 +190,8 @@ Joined number is: {{ count }}<br />
     <div class="col-sm-3">
         <h3>50 joined</h3>
         <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;">
-                 80%
+              <div class="progress-bar"  id="count50" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;">
+                 0%
               </div>
         </div>
         <hr/>
@@ -128,7 +206,28 @@ Joined number is: {{ count }}<br />
         <hr/>
     </div>
 </div>
+<div class="row featured-row">
+    <div class="col-sm-12" style="">
 
+
+
+    <div class="col-sm-3" style="">
+      <i class="fa fa-cloud-upload fa-3x"></i>
+      <h2>Feature</h2>
+        <p class="lead">
+        Some Feature text goes here.
+        </p>
+    </div>
+    <div class="col-sm-3" style="">
+      <i class="fa fa-map-marker fa-3x"></i>
+      <h2>Feature</h2>
+        <p class="lead">
+        Some Feature text goes here.
+        </p>
+    </div>
+
+   </div>
+</div>
 <br />
 </div>
 {% endblock %}

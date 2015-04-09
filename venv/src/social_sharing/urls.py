@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'joins.views.home', name='home'),
+    # url(r'^testhome$', 'social_sharing.views.testhome', name='testhome'),
     url(r'^(?P<ref_id>.*)$', 'joins.views.share', name='share'),
 
 

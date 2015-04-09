@@ -47,7 +47,7 @@ def share(request, ref_id):
 def home(request):
     try:
         join_id = request.session['join_id_ref']
-        obj = Join.objects.get(id = join_id)
+        obj = Join.objects.get(id=join_id)
     except:
         obj = None
 
