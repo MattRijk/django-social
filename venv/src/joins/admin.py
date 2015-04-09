@@ -11,3 +11,4 @@ class JoinAdmin(admin.ModelAdmin):
 
 admin.site.register(Join, JoinAdmin)
 
+# admin.site.register(JoinFriends)

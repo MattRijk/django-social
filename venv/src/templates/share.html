@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block styles %}
+
+
+
+{% endblock %}
+
+
+
+
 {% block jquery %}
 
     $signUpCount = {{ count }};
@@ -207,11 +216,11 @@ Joined number is: {{count}} <br />
     </div>
 </div>
 <div class="row featured-row">
-    <div class="col-sm-12" style="">
+    <div class="col-sm-12 " style="">
+    <hr/>
 
 
-
-    <div class="col-sm-3" style="">
+    <div class="col-sm-3  " style="">
       <i class="fa fa-cloud-upload fa-3x"></i>
       <h2>Feature</h2>
         <p class="lead">
@@ -219,7 +228,21 @@ Joined number is: {{count}} <br />
         </p>
     </div>
     <div class="col-sm-3" style="">
+      <i class="fa fa-pie-chart fa-3x"></i>
+      <h2>Feature</h2>
+        <p class="lead">
+        Some Feature text goes here.
+        </p>
+    </div>
+    <div class="col-sm-3" style="">
       <i class="fa fa-map-marker fa-3x"></i>
+      <h2>Feature</h2>
+        <p class="lead">
+        Some Feature text goes here.
+        </p>
+    </div>
+     <div class="col-sm-3" style="">
+      <i class="fa fa-code fa-3x"></i>
       <h2>Feature</h2>
         <p class="lead">
         Some Feature text goes here.
